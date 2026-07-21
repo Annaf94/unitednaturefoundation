@@ -1,0 +1,28 @@
+// Shared behavior across all pages
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      const expanded = nav.classList.contains('open');
+      toggle.setAttribute('aria-expanded', expanded);
+    });
+  }
+
+  // Newsletter form (footer) — placeholder handling, no backend yet
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = 'Thank you!';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+        form.reset();
+      }, 2500);
+    });
+  });
+});

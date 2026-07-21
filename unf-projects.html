@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Story — United Nature Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .story-hero {
+    min-height: 560px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+  }
+  .story-hero .container { display:grid; grid-template-columns: 1fr 1fr; }
+  .story-hero-text .eyebrow { color: rgba(255,255,255,0.85); }
+  .story-hero h1 { font-style: italic; font-size: clamp(2.4rem, 5vw, 3.6rem); color: var(--white); }
+  .story-hero ul { list-style: none; padding: 0; margin: 24px 0 0; }
+  .story-hero li { padding: 6px 0; font-size: 1.05rem; }
+  @media (max-width: 900px) { .story-hero .container { grid-template-columns: 1fr; } }
+
+  .intro-block h2 { color: var(--teal-900); font-size: 1.9rem; max-width: 640px; }
+  .intro-block p { color: var(--teal-900); }
+  .story-photo { border-radius: var(--radius-md); aspect-ratio: 16/10; }
+
+  .why-started h3 { color: var(--teal-900); font-size: 1.6rem; }
+
+  .hq-section { text-align: center; background: var(--cream-200); }
+  .hq-section h2 { color: var(--teal-900); }
+  .hq-section > .container > p { max-width: 700px; margin: 0 auto 50px; color: #5b5b50; }
+  .hq-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .hq-item .icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--sage-100);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .hq-item h4 { font-size: 1.05rem; color: var(--teal-900); }
+  .hq-item p { font-size: 0.9rem; color: #5b5b50; }
+  @media (max-width: 900px) { .hq-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .protector-section {
+    color: var(--white);
+    padding: 90px 0;
+  }
+  .protector-section h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); max-width: 520px; color: var(--white); }
+  .protector-section p { max-width: 460px; opacity: 0.92; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="unf">UNF</span>
+      <span class="full">UNITED NATURE</span>
+      <span class="tag">FOUNDATION</span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav">
+      <a href="our-story.html" aria-current="page">Our Story</a>
+      <a href="canopy-crew.html">Canopy Crew</a>
+      <a href="unf-projects.html">UNF Projects</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+    <div class="header-actions">
+      <a href="join-now.html" class="btn btn-primary">Join Now</a>
+    </div>
+  </div>
+</header>
+
+<section class="story-hero ph">
+  <div class="ph-label" style="position:absolute; top:0; right:0;">aerial view of river through rainforest canopy</div>
+  <div class="container">
+    <div class="story-hero-text">
+      <span class="eyebrow">Our Story</span>
+      <h1>About <em>UNF</em></h1>
+      <ul>
+        <li>Protect Nature</li>
+        <li>Empower Communities</li>
+        <li>Drive Lasting Impact</li>
+        <li>Inspire Stewardship</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section intro-block">
+  <div class="container grid-2">
+    <div>
+      <h2>Connecting Communities. Creating Opportunity. Protecting the Amazon.</h2>
+      <p>In remote communities throughout Presidente Figueiredo, Brazil, families face challenges that many of us never experience. Seasonal flooding can turn pathways into rivers, isolating communities from schools, healthcare, food supplies, and essential services.</p>
+      <p>United Nature Foundation exists to help create safe, sustainable connections between people, opportunity, and nature — building a future where communities can thrive while protecting one of the world's most important ecosystems.</p>
+    </div>
+    <div class="ph story-photo"><div class="ph-label">children under a shelter in the village</div></div>
+  </div>
+</section>
+
+<section class="section why-started" style="padding-top:0;">
+  <div class="container grid-2">
+    <div class="ph story-photo"><div class="ph-label">family portrait in the rainforest</div></div>
+    <div>
+      <h3>Why we started</h3>
+      <p>For many families living within the Amazon region, access is not guaranteed. Heavy rainfall and changing weather conditions can make routes impassable, preventing children from attending school and cutting communities off from vital resources. What should be a simple journey becomes a barrier to education, opportunity, and wellbeing.</p>
+      <p>We believe no child should miss an education because they cannot safely reach school, and no family should be isolated from essential services.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section hq-section">
+  <div class="container">
+    <h2>The Heart of Our Headquarters</h2>
+    <p>Alphonso was the heart of this area of the rainforest. People were drawn to him, protected by him, and inspired by him. That is exactly what our headquarters will become.</p>
+    <div class="hq-grid">
+      <div class="hq-item"><div class="icon">❤️</div><h4>A Heart</h4><p>A place full of compassion, connection and community</p></div>
+      <div class="hq-item"><div class="icon">🛡️</div><h4>A Protector</h4><p>A guardian of the land, wildlife, and future generations</p></div>
+      <div class="hq-item"><div class="icon">👨‍👩‍👧</div><h4>A Legacy</h4><p>A lasting tribute to Alphonso and his lifelong dedication</p></div>
+      <div class="hq-item"><div class="icon">🏡</div><h4>A Home</h4><p>A home for our team, supporters, and partners working together</p></div>
+      <div class="hq-item"><div class="icon">🌍</div><h4>A Future</h4><p>A place where hope grows and the rainforest is protected</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="protector-section ph">
+  <div class="ph-label" style="position:absolute; top:0; right:0;">jaguar face close-up over jungle river illustration</div>
+  <div class="container">
+    <h2>UNF is the new heart and protector of this land</h2>
+    <p>We carry communities spirits forward as we continue our mission to protect the Amazon and everything that calls it home.</p>
+    <a href="donate.html" class="btn btn-primary" style="margin-top:10px;">Join our mission</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-signup">
+      <h2>Keep In touch</h2>
+      <p>Sign up to keep up to date and informed about our continued conservation work in the Amazon and how you can help United Nature Foundation.</p>
+      <hr class="footer-rule">
+      <form class="newsletter-form">
+        <div class="signup-row">
+          <input type="email" placeholder="Enter your email" required>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="sub"><label for="sub">Yes, subscribe me to your newsletter.</label>
+          <button type="submit" class="btn btn-primary" style="margin-left:auto;">Sign Up</button>
+        </div>
+      </form>
+    </div>
+    <hr class="footer-rule">
+    <div class="footer-links">
+      <div>
+        <a href="#">Get Involved</a>
+        <a href="donate.html">Donate Now</a>
+      </div>
+      <div>
+        <a href="#">Homen De Selva</a>
+        <a href="#">UNF HQ</a>
+      </div>
+      <div>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Accessibility Statement</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 by United Nature Foundation.</div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
