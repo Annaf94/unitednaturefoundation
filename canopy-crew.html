@@ -3,24 +3,457 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pedal Project — United Nature Foundation</title>
+<title>Canopy Crew — United Nature Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
 <style>
-  .sub-hero { min-height: 420px; color: var(--white); display: flex; align-items: flex-end; padding-bottom: 50px; }
-  .sub-hero h1 { font-size: clamp(2rem, 4.4vw, 3rem); color: var(--white); }
-  .placeholder-note {
-    background: var(--sage-100); color: var(--forest-700); padding: 16px 22px; border-radius: 10px;
-    font-size: 0.9rem; margin-bottom: 40px;
+/* ==========================================================================
+   UNF — United Nature Foundation
+   Shared stylesheet
+   ========================================================================== */
+
+:root {
+  /* Color tokens (from brand screenshots) */
+  --forest-950: #16231a;   /* deepest green — nav text, headings, buttons */
+  --forest-900: #1c2b1f;   /* dark green panels */
+  --forest-700: #2f4a35;
+  --sage-500: #8fab93;     /* banner / quote green */
+  --sage-100: #dcebe0;     /* pill backgrounds */
+  --teal-900: #1e3a3a;     /* "Our Story" heading teal */
+  --cream-100: #faf8f1;    /* main light background */
+  --cream-200: #f2efe4;    /* footer / alt background */
+  --stone-100: #ece7dc;    /* card backgrounds (Projects page) */
+  --mist-100: #e7ecea;     /* footer alt */
+  --ink: #1b1b18;
+  --white: #ffffff;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Jost", "Futura PT", "Century Gothic", sans-serif;
+
+  --radius-md: 12px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --max-width: 1280px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream-100);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  margin: 0 0 0.5em;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+p { margin: 0 0 1em; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 700px) {
+  .container { padding: 0 20px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 14px 30px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  text-align: center;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--sage-500); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--forest-950);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--forest-700); }
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--forest-950);
+  color: var(--forest-950);
+}
+.btn-outline:hover { background: var(--forest-950); color: var(--white); }
+
+.btn-outline-light {
+  background: transparent;
+  border-color: rgba(255,255,255,0.7);
+  color: var(--white);
+}
+.btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+.btn-block {
+  background: var(--teal-900);
+  color: var(--white);
+  border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Header / Nav
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: relative;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  gap: 24px;
+}
+.brand {
+  font-family: var(--font-display);
+  line-height: 1;
+}
+.brand .unf {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--forest-950);
+  letter-spacing: 0.06em;
+  display: block;
+}
+.brand .full {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--forest-950);
+  display: block;
+  margin-top: 2px;
+}
+.brand .tag {
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: #8a8a7c;
+  display: block;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+.main-nav a {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--ink);
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid transparent;
+}
+.main-nav a[aria-current="page"] {
+  border-bottom-color: var(--forest-950);
+}
+.main-nav a:hover { border-bottom-color: var(--forest-950); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f8fbf;
+  background: transparent;
+  border: none;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--forest-950);
+  margin: 5px 0;
+}
+
+@media (max-width: 900px) {
+  .main-nav { display: none; }
+  .nav-toggle { display: block; }
+  .main-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--white);
+    padding: 20px 24px 28px;
+    gap: 16px;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
   }
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder media block (stand-in for real photography)
+   -------------------------------------------------------------------------- */
+.ph {
+  position: relative;
+  background: linear-gradient(135deg, #2b4630, #1a2b1e 60%, #0f1a12);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.ph::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 45%);
+}
+.ph-label {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.65);
+  background: rgba(0,0,0,0.35);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  margin: 14px;
+}
+.ph.light {
+  background: linear-gradient(135deg, #cdd6c9, #aab8a4 60%, #8b9c86);
+}
+.ph.light .ph-label { color: rgba(20,30,20,0.7); background: rgba(255,255,255,0.55); }
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--mist-100);
+  color: var(--teal-900);
+  padding: 64px 0 32px;
+}
+.footer-signup h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+.footer-rule {
+  border: none;
+  border-top: 1.5px solid var(--teal-900);
+  margin: 18px 0 28px;
+}
+.signup-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.signup-row input[type="email"] {
+  flex: 1;
+  min-width: 240px;
+  padding: 15px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #c7cdc8;
+  font-family: var(--font-body);
+}
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 40px;
+  border-top: 1.5px solid var(--teal-900);
+  padding-top: 28px;
+  margin-top: 8px;
+}
+.footer-links a { display: block; margin-bottom: 8px; font-size: 0.95rem; }
+.footer-bottom {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-top: 24px;
+  opacity: 0.8;
+}
+@media (max-width: 700px) {
+  .footer-links { grid-template-columns: 1fr; gap: 20px; }
+  .footer-bottom { text-align: left; }
+}
+
+/* --------------------------------------------------------------------------
+   Utility layout classes
+   -------------------------------------------------------------------------- */
+.section { padding: 90px 0; }
+.section-sm { padding: 56px 0; }
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--sage-500);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+.pill-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+.pill {
+  background: var(--sage-100);
+  color: var(--forest-700);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+</style>
+<style>
+  .cc-hero {
+    min-height: 540px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  .cc-hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); color: var(--white); margin-bottom: 6px; }
+  .cc-hero .sub { letter-spacing: 0.1em; font-size: 1rem; }
+
+  /* Animated creatures peeking around the hero */
+  .creature {
+    position: absolute;
+    font-size: 3rem;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+  }
+  .creature.jaguar { bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 4rem; animation: peek 4s ease-in-out infinite; }
+  .creature.macaw { top: 18%; left: 10%; animation: sway 5s ease-in-out infinite; }
+  .creature.sloth { top: 20%; right: 10%; animation: dangle 6s ease-in-out infinite; }
+
+  @keyframes peek {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-4deg) translateY(0); }
+    50% { transform: rotate(4deg) translateY(-6px); }
+  }
+  @keyframes dangle {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
+  }
+
+  /* Tabs */
+  .tabs { display: flex; border-bottom: 1px solid #e2e2d6; }
+  .tab-btn {
+    flex: 1;
+    padding: 22px;
+    text-align: center;
+    background: var(--stone-100);
+    color: var(--ink);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1rem;
+  }
+  .tab-btn.active { background: var(--forest-950); color: var(--white); }
+  .tab-panel { display: none; padding: 56px 0; }
+  .tab-panel.active { display: block; }
+  .tab-panel .grid-2 { align-items: flex-start; }
+  .tab-photo { border-radius: 50% / 40%; overflow: hidden; aspect-ratio: 4/5; max-width: 320px; }
+  .tab-panel h3 { color: var(--teal-900); font-size: 1.5rem; }
+  .tab-panel ul { padding-left: 0; list-style: none; }
+  .tab-panel li { padding: 8px 0; font-size: 1rem; }
+
+  .creative-section { background: var(--forest-950); color: var(--white); text-align: center; }
+  .creative-section h2 { color: var(--white); font-size: 2.4rem; text-transform: uppercase; margin-bottom: 50px; }
+  .creative-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .creative-card {
+    background: var(--cream-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    color: var(--ink);
+  }
+  .creative-card .ph { aspect-ratio: 4/3; }
+  .creative-card-body { padding: 26px; }
+  .creative-card h3 { text-decoration: underline; font-size: 1.3rem; }
+  .creative-tag {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    margin-top: 10px;
+  }
+  .tag-orange { background: #f6c89f; }
+  .tag-blue { background: #bcd7ea; }
+  .tag-purple { background: #e3c6ea; }
+  @media (max-width: 900px) { .creative-cards { grid-template-columns: 1fr; } }
+
+  .warrior-section { color: var(--white); padding: 90px 0; text-align: center; }
+  .warrior-section h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: var(--white); max-width: 640px; margin: 0 auto 24px; }
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container">
-    <a href="../index.html" class="brand">
+    <a href="index.html" class="brand">
       <span class="unf">UNF</span>
       <span class="full">UNITED NATURE</span>
       <span class="tag">FOUNDATION</span>
@@ -29,30 +462,120 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="main-nav">
-      <a href="../our-story.html">Our Story</a>
-      <a href="../canopy-crew.html">Canopy Crew</a>
-      <a href="../unf-projects.html" aria-current="page">UNF Projects</a>
-      <a href="../donate.html">Donate</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="canopy-crew.html" aria-current="page">Canopy Crew</a>
+      <a href="unf-projects.html">UNF Projects</a>
+      <a href="donate.html">Donate</a>
     </nav>
     <div class="header-actions">
-      <a href="../join-now.html" class="btn btn-primary">Join Now</a>
+      <a href="join-now.html" class="btn btn-primary">Join Now</a>
     </div>
   </div>
 </header>
 
-<section class="sub-hero ph">
-  <div class="ph-label" style="position:absolute; top:0; left:0;">children riding e-bikes on a forest path</div>
-  <div class="container">
-    <span class="eyebrow" style="color:#cfe3d0;">Transport</span>
-    <h1>Pedal Project</h1>
+<section class="cc-hero ph">
+  <div class="ph-label" style="position:absolute; top:0; left:0;">sunlit jungle path</div>
+  <span class="creature macaw" aria-hidden="true">🦜</span>
+  <span class="creature sloth" aria-hidden="true">🦥</span>
+  <span class="creature jaguar" aria-hidden="true">🐆</span>
+  <div>
+    <h1>WELCOME<br>CANOPY CREW</h1>
+    <div class="sub">UNF JUNIOR MEMBERSHIP</div>
   </div>
 </section>
 
-<section class="section">
+<section>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="membership">Childrens Membership</button>
+    <button class="tab-btn" data-tab="get">What you get</button>
+    <button class="tab-btn" data-tab="impact">Your Impact</button>
+  </div>
+
   <div class="container">
-    <div class="placeholder-note">This page is a placeholder — the Pedal Project sub-page hasn't been fully designed in Wix yet. Send over screenshots any time and I'll rebuild this to match.</div>
-    <p style="max-width:700px; font-size:1.05rem;">Putting e-bikes and sustainable transport directly into the hands of communities who need a safe, clean way to travel through remote landscapes — whatever the conditions.</p>
-    <a href="../unf-projects.html" class="btn btn-outline" style="margin-top:20px;">← Back to UNF Projects</a>
+    <div class="tab-panel active" id="tab-membership">
+      <div class="grid-2">
+        <div class="ph tab-photo"><div class="ph-label">child with jaguar cub illustration</div></div>
+        <div>
+          <h3>Welcome to Canopy Crew Kids — the exciting nature club for young rainforest explorers who love animals, adventure, and protecting our planet!</h3>
+          <p>Canopy Crew is an exciting children's membership designed for young nature lovers aged 4–15 who want to help protect the Amazon Rainforest and its incredible wildlife.</p>
+          <p>For just £8.99 a month, members become part of a fun and inspiring community dedicated to learning about nature, conservation, and endangered animals.</p>
+          <p>Children will receive monthly rainforest updates, fun educational content, and exciting activities that help them connect with the natural world. Every quarter, members will also receive an exclusive Canopy Crew pack filled with special goodies, collectables, and surprises to continue their rainforest adventure at home.</p>
+          <p>From wildlife fact files and creative activities to certificates and exclusive member items, Canopy Crew helps children learn, explore, and make a real difference for the planet — all while having fun along the way.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-get">
+      <div class="grid-2">
+        <div class="ph tab-photo"><div class="ph-label">child with sloth illustration</div></div>
+        <div>
+          <h3>Every month, you'll receive exciting goodies, fun activities, and exclusive collectables while helping protect the Amazon Rainforest</h3>
+          <ul>
+            <li>👕 An exclusive Canopy Crew T-Shirt</li>
+            <li>🎁 A special welcome pack full of rainforest goodies</li>
+            <li>📗 A collectable Amazon fact file to learn amazing wildlife facts</li>
+            <li>🏅 Your very own personalised Canopy Crew certificate</li>
+            <li>🌿 Fun nature activities and rainforest challenges</li>
+            <li>🎨 Access to creative colouring pages, games, and crafts</li>
+            <li>🦁 Updates about the animals and rainforest you are helping protect</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-impact">
+      <div class="grid-2">
+        <div class="ph tab-photo"><div class="ph-label">child with macaw illustration</div></div>
+        <div>
+          <h3>The difference you're making by being a Canopy Crew Member is huge! You are a real Amazon Hero</h3>
+          <ul>
+            <li>🐆 Your membership helps keep animals like jaguars, macaws, and sloths safe</li>
+            <li>🌱 You support planting and protecting trees that help our planet breathe</li>
+            <li>💧 You help protect rivers, plants, and homes deep in the rainforest</li>
+            <li>❤️ Your support helps stop deforestation and protect nature for the future</li>
+            <li>👣 You help create a safer future for endangered animals and rainforest communities</li>
+            <li>🌿 Your kindness helps keep the Amazon wild, green, and full of life</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section creative-section">
+  <div class="container">
+    <h2>Get Creative</h2>
+    <div class="creative-cards">
+      <div class="creative-card">
+        <div class="ph"><div class="ph-label">child holding colouring pages</div></div>
+        <div class="creative-card-body">
+          <h3>UNF Little Artists</h3>
+          <span class="creative-tag tag-orange">COLOURING PAGES</span>
+        </div>
+      </div>
+      <div class="creative-card">
+        <div class="ph"><div class="ph-label">child making art project</div></div>
+        <div class="creative-card-body">
+          <h3>UNF Creative Corner</h3>
+          <span class="creative-tag tag-blue">ART PROJECTS</span>
+        </div>
+      </div>
+      <div class="creative-card">
+        <div class="ph"><div class="ph-label">children playing a board game</div></div>
+        <div class="creative-card-body">
+          <h3>UNF Games</h3>
+          <span class="creative-tag tag-purple">INTERACTIVE GAMES</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="warrior-section ph">
+  <div class="ph-label" style="position:absolute; top:0; left:0;">ranger reading Amazon Story to children under canopy</div>
+  <div class="container">
+    <h2>Join Canopy Crew and become an Amazon Warrior</h2>
+    <a href="#" class="btn btn-outline-light">Sign Up →</a>
   </div>
 </section>
 
@@ -76,7 +599,7 @@
     <div class="footer-links">
       <div>
         <a href="#">Get Involved</a>
-        <a href="../donate.html">Donate Now</a>
+        <a href="donate.html">Donate Now</a>
       </div>
       <div>
         <a href="#">Homen De Selva</a>
@@ -92,6 +615,46 @@
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script>
+// Shared behavior across all pages
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      const expanded = nav.classList.contains('open');
+      toggle.setAttribute('aria-expanded', expanded);
+    });
+  }
+
+  // Newsletter form (footer) — placeholder handling, no backend yet
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = 'Thank you!';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+        form.reset();
+      }, 2500);
+    });
+  });
+});
+
+</script>
+<script>
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
 </body>
 </html>

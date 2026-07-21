@@ -3,24 +3,435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Power Project — United Nature Foundation</title>
+<title>Donate — United Nature Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/style.css">
 <style>
-  .sub-hero { min-height: 420px; color: var(--white); display: flex; align-items: flex-end; padding-bottom: 50px; }
-  .sub-hero h1 { font-size: clamp(2rem, 4.4vw, 3rem); color: var(--white); }
-  .placeholder-note {
-    background: var(--sage-100); color: var(--forest-700); padding: 16px 22px; border-radius: 10px;
-    font-size: 0.9rem; margin-bottom: 40px;
+/* ==========================================================================
+   UNF — United Nature Foundation
+   Shared stylesheet
+   ========================================================================== */
+
+:root {
+  /* Color tokens (from brand screenshots) */
+  --forest-950: #16231a;   /* deepest green — nav text, headings, buttons */
+  --forest-900: #1c2b1f;   /* dark green panels */
+  --forest-700: #2f4a35;
+  --sage-500: #8fab93;     /* banner / quote green */
+  --sage-100: #dcebe0;     /* pill backgrounds */
+  --teal-900: #1e3a3a;     /* "Our Story" heading teal */
+  --cream-100: #faf8f1;    /* main light background */
+  --cream-200: #f2efe4;    /* footer / alt background */
+  --stone-100: #ece7dc;    /* card backgrounds (Projects page) */
+  --mist-100: #e7ecea;     /* footer alt */
+  --ink: #1b1b18;
+  --white: #ffffff;
+
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Jost", "Futura PT", "Century Gothic", sans-serif;
+
+  --radius-md: 12px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
+
+  --max-width: 1280px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream-100);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  margin: 0 0 0.5em;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+p { margin: 0 0 1em; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 700px) {
+  .container { padding: 0 20px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 14px 30px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  text-align: center;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--sage-500); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--forest-950);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--forest-700); }
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--forest-950);
+  color: var(--forest-950);
+}
+.btn-outline:hover { background: var(--forest-950); color: var(--white); }
+
+.btn-outline-light {
+  background: transparent;
+  border-color: rgba(255,255,255,0.7);
+  color: var(--white);
+}
+.btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+.btn-block {
+  background: var(--teal-900);
+  color: var(--white);
+  border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Header / Nav
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: relative;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  gap: 24px;
+}
+.brand {
+  font-family: var(--font-display);
+  line-height: 1;
+}
+.brand .unf {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--forest-950);
+  letter-spacing: 0.06em;
+  display: block;
+}
+.brand .full {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--forest-950);
+  display: block;
+  margin-top: 2px;
+}
+.brand .tag {
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: #8a8a7c;
+  display: block;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+.main-nav a {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--ink);
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid transparent;
+}
+.main-nav a[aria-current="page"] {
+  border-bottom-color: var(--forest-950);
+}
+.main-nav a:hover { border-bottom-color: var(--forest-950); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f8fbf;
+  background: transparent;
+  border: none;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--forest-950);
+  margin: 5px 0;
+}
+
+@media (max-width: 900px) {
+  .main-nav { display: none; }
+  .nav-toggle { display: block; }
+  .main-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--white);
+    padding: 20px 24px 28px;
+    gap: 16px;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
   }
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder media block (stand-in for real photography)
+   -------------------------------------------------------------------------- */
+.ph {
+  position: relative;
+  background: linear-gradient(135deg, #2b4630, #1a2b1e 60%, #0f1a12);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.ph::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 45%);
+}
+.ph-label {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.65);
+  background: rgba(0,0,0,0.35);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  margin: 14px;
+}
+.ph.light {
+  background: linear-gradient(135deg, #cdd6c9, #aab8a4 60%, #8b9c86);
+}
+.ph.light .ph-label { color: rgba(20,30,20,0.7); background: rgba(255,255,255,0.55); }
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--mist-100);
+  color: var(--teal-900);
+  padding: 64px 0 32px;
+}
+.footer-signup h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+.footer-rule {
+  border: none;
+  border-top: 1.5px solid var(--teal-900);
+  margin: 18px 0 28px;
+}
+.signup-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.signup-row input[type="email"] {
+  flex: 1;
+  min-width: 240px;
+  padding: 15px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #c7cdc8;
+  font-family: var(--font-body);
+}
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 40px;
+  border-top: 1.5px solid var(--teal-900);
+  padding-top: 28px;
+  margin-top: 8px;
+}
+.footer-links a { display: block; margin-bottom: 8px; font-size: 0.95rem; }
+.footer-bottom {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-top: 24px;
+  opacity: 0.8;
+}
+@media (max-width: 700px) {
+  .footer-links { grid-template-columns: 1fr; gap: 20px; }
+  .footer-bottom { text-align: left; }
+}
+
+/* --------------------------------------------------------------------------
+   Utility layout classes
+   -------------------------------------------------------------------------- */
+.section { padding: 90px 0; }
+.section-sm { padding: 56px 0; }
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--sage-500);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+.pill-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+.pill {
+  background: var(--sage-100);
+  color: var(--forest-700);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+</style>
+<style>
+  .donate-hero {
+    margin: 26px auto 0;
+    max-width: var(--max-width);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    min-height: 460px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  .donate-hero h1 { font-size: clamp(1.8rem, 3.8vw, 2.6rem); color: var(--white); max-width: 760px; }
+  .donate-hero p { max-width: 720px; margin: 0 auto; opacity: 0.92; }
+
+  .impact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 60px; }
+  .impact-row:nth-child(even) .impact-text { order: 2; }
+  .impact-row h3 { color: var(--teal-900); font-size: 1.15rem; letter-spacing: 0.03em; text-transform: uppercase; }
+  .impact-row p { color: #4a4a3f; }
+  .impact-photo { border-radius: var(--radius-md); aspect-ratio: 16/10; }
+  @media (max-width: 800px) {
+    .impact-row { grid-template-columns: 1fr; }
+    .impact-row:nth-child(even) .impact-text { order: 0; }
+  }
+
+  .give-section { display: grid; grid-template-columns: 1.1fr 0.9fr; background: var(--cream-200); }
+  .give-left { padding: 70px 60px; }
+  .give-left h2 { color: var(--teal-900); font-size: 2.2rem; }
+  .toggle-row { display: flex; gap: 0; max-width: 420px; margin: 24px 0 28px; border-radius: var(--radius-pill); overflow: hidden; border: 1px solid var(--forest-950); }
+  .toggle-row button {
+    flex: 1; padding: 14px; border: none; background: transparent; font-family: var(--font-body); cursor: pointer; font-size: 0.95rem;
+  }
+  .toggle-row button.active { background: var(--forest-950); color: var(--white); }
+  .amount-label { font-size: 0.85rem; letter-spacing: 0.06em; color: var(--teal-900); margin-bottom: 12px; }
+  .amount-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 460px; margin-bottom: 20px; }
+  .amount-btn {
+    padding: 16px; border-radius: var(--radius-pill); border: 1px solid #cfcfc2; background: var(--white);
+    cursor: pointer; font-family: var(--font-body); font-size: 1rem;
+  }
+  .amount-btn.active { background: var(--forest-950); color: var(--white); border-color: var(--forest-950); }
+  #customAmount { display: none; margin-bottom: 20px; max-width: 460px; }
+  #customAmount input { width: 100%; padding: 14px 18px; border-radius: var(--radius-pill); border: 1px solid #cfcfc2; font-family: var(--font-body); }
+  .donate-submit { max-width: 460px; width: 100%; justify-content: center; }
+  .donate-note { font-size: 0.85rem; color: #7a7a6c; margin-top: 12px; max-width: 460px; }
+
+  .give-right { padding: 70px 40px; position: relative; display: flex; align-items: center; justify-content: center; }
+  .phone-mock {
+    width: 240px;
+    background: var(--cream-100);
+    border-radius: 34px;
+    border: 8px solid var(--ink);
+    padding: 20px 16px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+  .phone-mock .brand-mini { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--forest-950); margin-bottom: 30px; }
+  .phone-mock h3 { font-size: 1.3rem; color: var(--ink); }
+  .phone-mock p { font-size: 0.78rem; color: #6b6b60; }
+  .phone-amounts { display: flex; gap: 8px; justify-content: center; margin-top: 16px; }
+  .phone-amounts span { background: var(--stone-100); padding: 6px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; }
 </style>
 </head>
 <body>
 
 <header class="site-header">
   <div class="container">
-    <a href="../index.html" class="brand">
+    <a href="index.html" class="brand">
       <span class="unf">UNF</span>
       <span class="full">UNITED NATURE</span>
       <span class="tag">FOUNDATION</span>
@@ -29,30 +440,88 @@
       <span></span><span></span><span></span>
     </button>
     <nav class="main-nav">
-      <a href="../our-story.html">Our Story</a>
-      <a href="../canopy-crew.html">Canopy Crew</a>
-      <a href="../unf-projects.html" aria-current="page">UNF Projects</a>
-      <a href="../donate.html">Donate</a>
+      <a href="our-story.html">Our Story</a>
+      <a href="canopy-crew.html">Canopy Crew</a>
+      <a href="unf-projects.html">UNF Projects</a>
+      <a href="donate.html" aria-current="page">Donate</a>
     </nav>
     <div class="header-actions">
-      <a href="../join-now.html" class="btn btn-primary">Join Now</a>
+      <a href="join-now.html" class="btn btn-primary">Join Now</a>
     </div>
   </div>
 </header>
 
-<section class="sub-hero ph">
-  <div class="ph-label" style="position:absolute; top:0; left:0;">solar panels on a village rooftop</div>
-  <div class="container">
-    <span class="eyebrow" style="color:#cfe3d0;">Energy</span>
-    <h1>Power Project</h1>
+<div class="donate-hero ph">
+  <div class="ph-label" style="position:absolute; top:14px; left:14px;">misty aerial rainforest canopy</div>
+  <div>
+    <h1>How Your Donations Help Protect the Amazon</h1>
+    <p>Every donation to the United Nature Foundation directly supports the protection, restoration, and long-term survival of the Amazon rainforest ecosystem. Your support helps us safeguard one of the most biodiverse places on Earth — protecting wildlife, supporting local guardians, and restoring damaged rainforest for future generations.</p>
   </div>
-</section>
+</div>
 
 <section class="section">
   <div class="container">
-    <div class="placeholder-note">This page is a placeholder — the Power Project sub-page hasn't been fully designed in Wix yet. Send over screenshots any time and I'll rebuild this to match.</div>
-    <p style="max-width:700px; font-size:1.05rem;">Installing solar energy systems in off-grid communities, bringing light, warmth, and independence to the people who need it. Reliable electricity changes everything — from studying after dark to powering medical equipment.</p>
-    <a href="../unf-projects.html" class="btn btn-outline" style="margin-top:20px;">← Back to UNF Projects</a>
+    <div class="impact-row">
+      <div class="impact-text">
+        <h3>Plant and Restore Native Rainforest Trees</h3>
+        <p>Donations help us reforest degraded areas of the Amazon by planting native tree species that restore habitats, improve biodiversity, and strengthen the rainforest's natural ability to absorb carbon.</p>
+      </div>
+      <div class="ph impact-photo"><div class="ph-label">team planting saplings</div></div>
+    </div>
+    <div class="impact-row">
+      <div class="impact-text">
+        <h3>Support Frontline Forest Patrols</h3>
+        <p>Your contribution helps fund local teams who monitor and patrol protected rainforest areas to prevent illegal logging, poaching, mining, and land destruction. These patrols are essential for protecting vulnerable wildlife and preserving untouched forest.</p>
+      </div>
+      <div class="ph impact-photo"><div class="ph-label">patrol vehicle on forest track</div></div>
+    </div>
+    <div class="impact-row">
+      <div class="impact-text">
+        <h3>Protect Endangered Wildlife Habitats</h3>
+        <p>The Amazon is home to jaguars, macaws, river dolphins, monkeys, sloths, and thousands of rare species. Donations help preserve the habitats these animals rely on to survive. Healthy rainforests protect vital waterways that sustain wildlife, local communities, and the wider global climate system.</p>
+      </div>
+      <div class="ph impact-photo"><div class="ph-label">jaguar resting in undergrowth</div></div>
+    </div>
+    <div class="impact-row">
+      <div class="impact-text">
+        <h3>Support Local Communities</h3>
+        <p>We work alongside local people who play a vital role in protecting the rainforest. Donations help create sustainable opportunities that encourage conservation over deforestation. Contributions also help fund educational resources and conservation awareness projects that inspire children and families to value and protect nature.</p>
+      </div>
+      <div class="ph impact-photo"><div class="ph-label">aerial view of village road through forest</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="give-section" id="give">
+  <div class="give-left">
+    <h2>Help Us Protect</h2>
+    <div class="toggle-row">
+      <button type="button" class="freq-btn active" data-freq="one">One time</button>
+      <button type="button" class="freq-btn" data-freq="monthly">Monthly</button>
+    </div>
+    <div class="amount-label">CHOOSE AN AMOUNT TO GIVE</div>
+    <div class="amount-grid">
+      <button type="button" class="amount-btn" data-amount="5">£5</button>
+      <button type="button" class="amount-btn" data-amount="10">£10</button>
+      <button type="button" class="amount-btn" data-amount="20">£20</button>
+      <button type="button" class="amount-btn active" data-amount="50">£50</button>
+      <button type="button" class="amount-btn" data-amount="100">£100</button>
+      <button type="button" class="amount-btn" data-amount="other">Other</button>
+    </div>
+    <div id="customAmount">
+      <input type="number" min="1" placeholder="Enter amount (£)">
+    </div>
+    <button type="button" class="btn btn-primary donate-submit" id="donateBtn">Donate £50</button>
+    <p class="donate-note">Payments aren't connected yet — this button is a placeholder until a payment processor (e.g. Stripe) is set up.</p>
+  </div>
+  <div class="give-right">
+    <div class="phone-mock">
+      <div class="brand-mini">UNF UNITED<br>NATURE FOUNDATION</div>
+      <h3>DONATE NOW</h3>
+      <p>Your support helps protect wildlife and natural habitats.</p>
+      <p style="margin-top:14px; font-size:0.7rem; letter-spacing:0.05em;">CHOOSE YOUR DONATION</p>
+      <div class="phone-amounts"><span>£5</span><span>£10</span><span>£20</span></div>
+    </div>
   </div>
 </section>
 
@@ -76,7 +545,7 @@
     <div class="footer-links">
       <div>
         <a href="#">Get Involved</a>
-        <a href="../donate.html">Donate Now</a>
+        <a href="donate.html">Donate Now</a>
       </div>
       <div>
         <a href="#">Homen De Selva</a>
@@ -92,6 +561,77 @@
   </div>
 </footer>
 
-<script src="../js/main.js"></script>
+<script>
+// Shared behavior across all pages
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      const expanded = nav.classList.contains('open');
+      toggle.setAttribute('aria-expanded', expanded);
+    });
+  }
+
+  // Newsletter form (footer) — placeholder handling, no backend yet
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = 'Thank you!';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+        form.reset();
+      }, 2500);
+    });
+  });
+});
+
+</script>
+<script>
+  const amountBtns = document.querySelectorAll('.amount-btn');
+  const customAmount = document.getElementById('customAmount');
+  const donateBtn = document.getElementById('donateBtn');
+  const freqBtns = document.querySelectorAll('.freq-btn');
+  let frequency = 'one time';
+
+  function updateDonateLabel() {
+    const active = document.querySelector('.amount-btn.active');
+    if (active && active.dataset.amount !== 'other') {
+      donateBtn.textContent = `Donate £${active.dataset.amount}${frequency === 'monthly' ? '/mo' : ''}`;
+    } else {
+      const val = customAmount.querySelector('input').value;
+      donateBtn.textContent = val ? `Donate £${val}${frequency === 'monthly' ? '/mo' : ''}` : 'Enter an amount';
+    }
+  }
+
+  amountBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      amountBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      customAmount.style.display = btn.dataset.amount === 'other' ? 'block' : 'none';
+      updateDonateLabel();
+    });
+  });
+
+  customAmount.querySelector('input').addEventListener('input', updateDonateLabel);
+
+  freqBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      freqBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      frequency = btn.dataset.freq === 'monthly' ? 'monthly' : 'one time';
+      updateDonateLabel();
+    });
+  });
+
+  donateBtn.addEventListener('click', () => {
+    alert('Payments are not connected yet. Once a payment processor is set up, this button will process real donations.');
+  });
+</script>
 </body>
 </html>
