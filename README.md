@@ -1,22 +1,484 @@
-# United Nature Foundation — Website (flat structure)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Project — United Nature Foundation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   UNF — United Nature Foundation
+   Shared stylesheet
+   ========================================================================== */
 
-Every page is now a single self-contained HTML file — CSS and JS are built directly into each page, so there are no css/ or js/ subfolders to worry about anymore.
+:root {
+  /* Color tokens (from brand screenshots) */
+  --forest-950: #16231a;   /* deepest green — nav text, headings, buttons */
+  --forest-900: #1c2b1f;   /* dark green panels */
+  --forest-700: #2f4a35;
+  --sage-500: #8fab93;     /* banner / quote green */
+  --sage-100: #dcebe0;     /* pill backgrounds */
+  --teal-900: #1e3a3a;     /* "Our Story" heading teal */
+  --cream-100: #faf8f1;    /* main light background */
+  --cream-200: #f2efe4;    /* footer / alt background */
+  --stone-100: #ece7dc;    /* card backgrounds (Projects page) */
+  --mist-100: #e7ecea;     /* footer alt */
+  --ink: #1b1b18;
+  --white: #ffffff;
 
-## Files
-- index.html — Home
-- our-story.html — Our Story
-- canopy-crew.html — Canopy Crew
-- unf-projects.html — UNF Projects
-- donate.html — Donate
-- join-now.html — Join Now
-- pathways.html, power.html, pedal.html — project placeholder pages
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Jost", "Futura PT", "Century Gothic", sans-serif;
 
-## How to upload to GitHub
-1. Go to your repo -> Add file -> Upload files
-2. Select/drag all 9 .html files plus README.md at once -- since there are no folders involved, there's nothing for GitHub to lose this time
-3. This will OVERWRITE the old versions of files with the same name -- that's expected, it fixes the broken ones
-4. Delete the old css and js folders (and the projects folder) from your repo afterwards, since they're no longer used -- click into each one on GitHub and use the "..." menu to delete
-5. Commit, then Vercel will auto-redeploy
+  --radius-md: 12px;
+  --radius-lg: 28px;
+  --radius-pill: 999px;
 
-## Still using placeholder images
-Photo spots still show green gradient blocks with descriptive labels (e.g. "hero photo -- toucan in rainforest canopy"). Ask Claude when you're ready to swap in real images.
+  --max-width: 1280px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream-100);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  margin: 0 0 0.5em;
+  line-height: 1.1;
+  font-weight: 600;
+}
+
+p { margin: 0 0 1em; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 700px) {
+  .container { padding: 0 20px; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 14px 30px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  text-align: center;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:focus-visible { outline: 3px solid var(--sage-500); outline-offset: 2px; }
+
+.btn-primary {
+  background: var(--forest-950);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--forest-700); }
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--forest-950);
+  color: var(--forest-950);
+}
+.btn-outline:hover { background: var(--forest-950); color: var(--white); }
+
+.btn-outline-light {
+  background: transparent;
+  border-color: rgba(255,255,255,0.7);
+  color: var(--white);
+}
+.btn-outline-light:hover { background: rgba(255,255,255,0.15); }
+
+.btn-block {
+  background: var(--teal-900);
+  color: var(--white);
+  border-radius: var(--radius-md);
+}
+
+/* --------------------------------------------------------------------------
+   Header / Nav
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: relative;
+  z-index: 50;
+  background: var(--white);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  gap: 24px;
+}
+.brand {
+  font-family: var(--font-display);
+  line-height: 1;
+}
+.brand .unf {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--forest-950);
+  letter-spacing: 0.06em;
+  display: block;
+}
+.brand .full {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--forest-950);
+  display: block;
+  margin-top: 2px;
+}
+.brand .tag {
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: #8a8a7c;
+  display: block;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+.main-nav a {
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  color: var(--ink);
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid transparent;
+}
+.main-nav a[aria-current="page"] {
+  border-bottom-color: var(--forest-950);
+}
+.main-nav a:hover { border-bottom-color: var(--forest-950); }
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.icon-btn {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #4f8fbf;
+  background: transparent;
+  border: none;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--forest-950);
+  margin: 5px 0;
+}
+
+@media (max-width: 900px) {
+  .main-nav { display: none; }
+  .nav-toggle { display: block; }
+  .main-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--white);
+    padding: 20px 24px 28px;
+    gap: 16px;
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Placeholder media block (stand-in for real photography)
+   -------------------------------------------------------------------------- */
+.ph {
+  position: relative;
+  background: linear-gradient(135deg, #2b4630, #1a2b1e 60%, #0f1a12);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.ph::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05), transparent 45%);
+}
+.ph-label {
+  position: relative;
+  z-index: 2;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  color: rgba(255,255,255,0.65);
+  background: rgba(0,0,0,0.35);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  margin: 14px;
+}
+.ph.light {
+  background: linear-gradient(135deg, #cdd6c9, #aab8a4 60%, #8b9c86);
+}
+.ph.light .ph-label { color: rgba(20,30,20,0.7); background: rgba(255,255,255,0.55); }
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: var(--mist-100);
+  color: var(--teal-900);
+  padding: 64px 0 32px;
+}
+.footer-signup h2 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  margin-bottom: 14px;
+}
+.footer-rule {
+  border: none;
+  border-top: 1.5px solid var(--teal-900);
+  margin: 18px 0 28px;
+}
+.signup-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.signup-row input[type="email"] {
+  flex: 1;
+  min-width: 240px;
+  padding: 15px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid #c7cdc8;
+  font-family: var(--font-body);
+}
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 40px;
+  border-top: 1.5px solid var(--teal-900);
+  padding-top: 28px;
+  margin-top: 8px;
+}
+.footer-links a { display: block; margin-bottom: 8px; font-size: 0.95rem; }
+.footer-bottom {
+  text-align: right;
+  font-size: 0.85rem;
+  margin-top: 24px;
+  opacity: 0.8;
+}
+@media (max-width: 700px) {
+  .footer-links { grid-template-columns: 1fr; gap: 20px; }
+  .footer-bottom { text-align: left; }
+}
+
+/* --------------------------------------------------------------------------
+   Utility layout classes
+   -------------------------------------------------------------------------- */
+.section { padding: 90px 0; }
+.section-sm { padding: 56px 0; }
+.eyebrow {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--sage-500);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  display: block;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+.pill-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 24px; }
+.pill {
+  background: var(--sage-100);
+  color: var(--forest-700);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+    .logo-img { height: 52px; width: auto; display: block; }
+    @media (max-width: 600px) { .logo-img { height: 42px; } }
+</style>
+<style>
+  .sub-hero { min-height: 420px; color: var(--white); display: flex; align-items: flex-end; padding-bottom: 50px; }
+  .sub-hero h1 { font-size: clamp(2rem, 4.4vw, 3rem); color: var(--white); }
+  .placeholder-note {
+    background: var(--sage-100); color: var(--forest-700); padding: 16px 22px; border-radius: 10px;
+    font-size: 0.9rem; margin-bottom: 40px;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <img src="media/unf-logo.png" alt="United Nature Foundation" class="logo-img">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="main-nav">
+      <a href="our-story.html">Our Story</a>
+      <a href="canopy-crew.html">Canopy Crew</a>
+      <a href="unf-projects.html" aria-current="page">UNF Projects</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+    <div class="header-actions">
+      <a href="join-now.html" class="btn btn-primary">Join Now</a>
+    </div>
+  </div>
+</header>
+
+<section class="sub-hero ph">
+  <div class="ph-label" style="position:absolute; top:0; left:0;">solar panels on a village rooftop</div>
+  <div class="container">
+    <span class="eyebrow" style="color:#cfe3d0;">Energy</span>
+    <h1>Power Project</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="placeholder-note">This page is a placeholder — the Power Project sub-page hasn't been fully designed in Wix yet. Send over screenshots any time and I'll rebuild this to match.</div>
+    <p style="max-width:700px; font-size:1.05rem;">Installing solar energy systems in off-grid communities, bringing light, warmth, and independence to the people who need it. Reliable electricity changes everything — from studying after dark to powering medical equipment.</p>
+    <a href="unf-projects.html" class="btn btn-outline" style="margin-top:20px;">← Back to UNF Projects</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-signup">
+      <h2>Keep In touch</h2>
+      <p>Sign up to keep up to date and informed about our continued conservation work in the Amazon and how you can help United Nature Foundation.</p>
+      <hr class="footer-rule">
+      <form class="newsletter-form">
+        <div class="signup-row">
+          <input type="email" placeholder="Enter your email" required>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="sub"><label for="sub">Yes, subscribe me to your newsletter.</label>
+          <button type="submit" class="btn btn-primary" style="margin-left:auto;">Sign Up</button>
+        </div>
+      </form>
+    </div>
+    <hr class="footer-rule">
+    <div class="footer-links">
+      <div>
+        <a href="#">Get Involved</a>
+        <a href="donate.html">Donate Now</a>
+      </div>
+      <div>
+        <a href="#">Homen De Selva</a>
+        <a href="#">UNF HQ</a>
+      </div>
+      <div>
+        <a href="#">Terms &amp; Conditions</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Accessibility Statement</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 by United Nature Foundation.</div>
+  </div>
+</footer>
+
+<script>
+// Shared behavior across all pages
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.main-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      nav.classList.toggle('open');
+      const expanded = nav.classList.contains('open');
+      toggle.setAttribute('aria-expanded', expanded);
+    });
+  }
+
+  // Newsletter form (footer) — placeholder handling, no backend yet
+  document.querySelectorAll('.newsletter-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('button');
+      const original = btn.textContent;
+      btn.textContent = 'Thank you!';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.disabled = false;
+        form.reset();
+      }, 2500);
+    });
+  });
+});
+
+</script>
+</body>
+</html>

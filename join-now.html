@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join Now — United Nature Foundation</title>
+<title>United Nature Foundation — A river shouldn't stand between a child and their future</title>
+<meta name="description" content="United Nature Foundation connects isolated Amazon communities to clean energy, safe passage, and a protected natural world.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -362,84 +363,140 @@ p { margin: 0 0 1em; }
   gap: 8px;
 }
 
+
+    .logo-img { height: 52px; width: auto; display: block; }
+    @media (max-width: 600px) { .logo-img { height: 42px; } }
 </style>
 <style>
-  .join-hero {
-    min-height: 640px;
+  .hero {
+    min-height: 620px;
     color: var(--white);
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-bottom: 60px;
+    align-items: flex-end;
+    padding-bottom: 70px;
   }
-  .join-hero h1 {
-    font-size: clamp(2.2rem, 5.4vw, 3.6rem);
-    color: var(--white);
-    text-transform: uppercase;
-    line-height: 1.15;
-  }
-  .join-hero h1 .amazon { color: rgba(0,0,0,0.55); }
-  .join-hero .btns { display: flex; gap: 16px; justify-content: center; margin-top: 30px; flex-wrap: wrap; }
-  .join-hero .btn { background: var(--white); color: var(--ink); border-color: var(--white); }
-  .join-hero .btn:hover { background: transparent; color: var(--white); }
-
-  .quote-strip { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0; align-items: stretch; }
-  .quote-block { padding: 50px 40px; display: flex; flex-direction: column; justify-content: center; }
-  .quote-block .mark { font-family: var(--font-display); font-size: 2.4rem; color: var(--teal-900); line-height: 1; }
-  .quote-block p { color: var(--teal-900); font-size: 1.05rem; }
-  .quote-block .who { font-size: 0.9rem; color: #6b6b60; }
-  .quote-strip .ph { aspect-ratio: 1/1; }
-  @media (max-width: 900px) { .quote-strip { grid-template-columns: 1fr; } }
-
-  .tier-card {
-    border-radius: var(--radius-lg);
-    padding: 56px 60px;
-    color: var(--white);
-    margin: 0 auto 30px;
-    max-width: 1200px;
-  }
-  .tier-card.ranger { background: linear-gradient(120deg, #9fd6a8, #4a7a55 55%, #26402c); }
-  .tier-card.corporate { background: linear-gradient(120deg, #6fb7ea, #dfeeff 55%, #bcd9f7); color: var(--teal-900); }
-  .tier-card .kicker { letter-spacing: 0.1em; font-size: 0.8rem; text-transform: uppercase; opacity: 0.9; }
-  .tier-card h2 { font-size: clamp(2rem, 4vw, 2.8rem); color: inherit; text-transform: uppercase; margin: 10px 0 22px; }
-  .tier-card p { max-width: 620px; opacity: 0.95; }
-  .tier-card .tags { text-decoration: underline; font-size: 0.9rem; letter-spacing: 0.03em; margin: 18px 0 30px; display:block; }
-  .tier-card .price { font-size: 1.3rem; font-weight: 600; }
-  .tier-card .price-note { font-size: 0.95rem; opacity: 0.85; }
-  .tier-card .btn { margin-top: 24px; }
-  .tier-card.ranger .btn { background: var(--white); color: var(--forest-950); border-color: var(--white); }
-  .tier-card.corporate .btn { background: var(--teal-900); color: var(--white); border-color: var(--teal-900); }
-
-  .protect-banner {
+  .hero-video {
     position: relative;
-    color: var(--white);
-    padding: 60px 0;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr 1fr 1fr;
-    align-items: center;
-    gap: 20px;
+    overflow: hidden;
+    background: #0f1a12; /* shows briefly while video loads */
   }
-  .protect-banner h2 { color: var(--white); font-size: clamp(1.6rem, 3vw, 2.2rem); line-height: 1.15; }
-  .protect-banner h2 em { color: #a9e6ad; font-style: normal; }
-  .stat { text-align: center; border-left: 1px solid rgba(255,255,255,0.35); padding-left: 20px; }
-  .stat:first-of-type { border-left: none; padding-left: 0; }
-  .stat .icon { font-size: 1.4rem; margin-bottom: 8px; }
-  .stat .num { font-family: var(--font-display); font-size: 1.7rem; }
-  .stat .lbl { font-size: 0.7rem; letter-spacing: 0.05em; opacity: 0.85; }
-  @media (max-width: 900px) {
-    .protect-banner { grid-template-columns: 1fr; text-align: center; }
-    .stat { border-left: none; padding-left: 0; }
+  .hero-video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+    z-index: 1;
+  }
+  .hero-video .container { position: relative; z-index: 2; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-video-bg { display: none; }
+    .hero-video { background: linear-gradient(135deg, #2b4630, #1a2b1e 60%, #0f1a12); }
+  }
+  .hero-content { max-width: 720px; }
+  .hero h1 {
+    font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+    color: var(--white);
+  }
+  .hero p { font-size: 1.05rem; max-width: 560px; opacity: 0.95; }
+
+  .mission-img { border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 4/5; }
+
+  .projects-intro { text-align: center; max-width: 640px; margin: 0 auto 50px; }
+  .projects-intro h2 { font-size: 2.2rem; }
+  .project-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .project-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+  .project-card .ph { aspect-ratio: 16/9; }
+  .project-card-body { padding: 28px; }
+  .tag-pill {
+    display: inline-block;
+    background: var(--sage-100);
+    color: var(--forest-700);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .project-card h3 { font-size: 1.3rem; }
+  .project-card a.learn { font-size: 0.9rem; text-decoration: underline; }
+  @media (max-width: 900px) { .project-cards { grid-template-columns: 1fr; } }
+
+  .quote-banner {
+    background: var(--sage-500);
+    color: var(--white);
+    text-align: center;
+    padding: 44px 20px;
+    font-size: 1.15rem;
   }
 
-  .wildlife-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-  .wildlife-strip .ph { aspect-ratio: 4/5; }
-  .wildlife-strip .fact {
-    background: var(--cream-200);
-    display: flex; align-items: center; padding: 30px;
-    font-size: 1rem; color: var(--teal-900);
+  .calc-section .grid-2 { align-items: flex-start; }
+  .calc-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
   }
-  @media (max-width: 900px) { .wildlife-strip { grid-template-columns: repeat(2, 1fr); } }
+  .calc-head { display: flex; gap: 14px; align-items: center; margin-bottom: 28px; }
+  .calc-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--sage-100);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+  }
+  .calc-head h3 { margin: 0; font-size: 1.15rem; font-family: var(--font-body); font-weight: 600; }
+  .calc-head span { font-size: 0.85rem; color: #6b6b60; }
+  .slider-label {
+    display: flex; justify-content: space-between;
+    font-size: 0.78rem; letter-spacing: 0.05em; color: #6b6b60; margin-bottom: 6px;
+  }
+  input[type="range"] { width: 100%; accent-color: var(--sage-500); margin-bottom: 22px; }
+  select.season {
+    width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid #d8d8cc;
+    font-family: var(--font-body); margin-bottom: 26px; background: var(--white);
+  }
+  .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 22px; }
+  .stat-box {
+    background: var(--cream-200);
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+  }
+  .stat-box.dark { background: var(--forest-950); color: var(--white); }
+  .stat-box .num { font-family: var(--font-display); font-size: 1.7rem; }
+  .stat-box .lbl { font-size: 0.78rem; color: #6b6b60; }
+  .stat-box.dark .lbl { color: rgba(255,255,255,0.7); }
+  .risk-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 8px; }
+  .risk-bar { height: 8px; background: #e6e6da; border-radius: var(--radius-pill); overflow: hidden; margin-bottom: 10px; }
+  .risk-bar span { display: block; height: 100%; background: var(--sage-500); }
+  .risk-note { font-size: 0.85rem; font-style: italic; color: #6b6b60; }
+
+  .save-amazon {
+    color: var(--white);
+    padding: 100px 0;
+    position: relative;
+  }
+  .save-amazon .container { max-width: 900px; margin-left: auto; text-align: right; }
+  .save-amazon h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: var(--white); }
+  .save-amazon .kicker { letter-spacing: 0.1em; font-size: 0.95rem; margin-bottom: 20px; }
+  .save-amazon p { font-size: 0.95rem; opacity: 0.92; }
+  .save-amazon .btn { margin-top: 20px; }
+
+  .canopy-teaser { background: var(--mist-100); }
+  .canopy-teaser .grid-2 { align-items: center; }
+  .canopy-teaser h2 { font-size: 2.4rem; color: var(--teal-900); }
 </style>
 </head>
 <body>
@@ -447,9 +504,7 @@ p { margin: 0 0 1em; }
 <header class="site-header">
   <div class="container">
     <a href="index.html" class="brand">
-      <span class="unf">UNF</span>
-      <span class="full">UNITED NATURE</span>
-      <span class="tag">FOUNDATION</span>
+      <img src="media/unf-logo.png" alt="United Nature Foundation" class="logo-img">
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -461,71 +516,160 @@ p { margin: 0 0 1em; }
       <a href="donate.html">Donate</a>
     </nav>
     <div class="header-actions">
-      <a href="join-now.html" class="btn btn-primary">Join Now</a>
+      <a href="donate.html" class="btn btn-primary">Help Now</a>
     </div>
   </div>
 </header>
 
-<section class="join-hero ph">
-  <div class="ph-label" style="position:absolute; top:0; left:0;">sunrise over rainforest canopy</div>
+<section class="hero hero-video">
+  <video class="hero-video-bg" autoplay muted loop playsinline poster="">
+    <source src="media/header-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
   <div class="container">
-    <h1>Become a<br>Guardian of the<br><span class="amazon">Amazon</span></h1>
-    <div class="btns">
-      <a href="#ranger" class="btn">Amazon Ranger</a>
-      <a href="#corporate" class="btn">Corporate Ranger</a>
+    <div class="hero-content">
+      <h1 style="text-transform: uppercase;">A river shouldn't stand between a child and their future</h1>
+      <p>Every day, thousands of children wade through floodwater, mud and debris to reach their school. Communities become land locked. Civilization stops.</p>
+      <a href="unf-projects.html" class="btn btn-primary" style="margin-top:10px;">UNF Humanitarian Project</a>
     </div>
   </div>
 </section>
 
-<section class="quote-strip">
-  <div class="quote-block">
-    <span class="mark">&ldquo;</span>
-    <p>Being a UNF member means knowing I'm part of something bigger - protecting life, cultures an our planets future.</p>
-    <span class="who">- Michael, Amazon Ranger Member</span>
-  </div>
-  <div class="ph"><div class="ph-label">blue morpho butterfly on leaf</div></div>
-  <div class="ph"><div class="ph-label">capybara wading in water</div></div>
-  <div class="ph"><div class="ph-label">glass frog on leaf</div></div>
-</section>
-
-<section class="section" style="padding-bottom:20px;">
-  <div class="tier-card ranger" id="ranger">
-    <span class="kicker">For Juniors, Families and Gifts</span>
-    <h2>Amazon Ranger</h2>
-    <p>A one-off into the wild contribution.<br>Join the conservation crew, contribute towards 0.1 acre of land and get a Ranger Welcome Pack - perfect as a gift.</p>
-    <span class="tags">JUNIOR FRIENDLY | GIFT OPTION | ONE OFF</span>
-    <div class="price">£99.99</div>
-    <div class="price-note">one off lifetime ranger</div>
-    <a href="donate.html" class="btn">Become a Ranger</a>
-  </div>
-
-  <div class="tier-card corporate" id="corporate">
-    <span class="kicker">For Businesses</span>
-    <h2>Corporate Ranger</h2>
-    <p>Protect the rainforest at scale.<br>Sponsor 2 - 100 acres, anchor your ESG story in measurable impact and stand among the businesses defending the Amazon.</p>
-    <span class="tags">2-100 ACRES | ANNUAL PARTNERSHIP</span>
-    <div class="price">£1000.00</div>
-    <div class="price-note">per acre from £2000</div>
-    <a href="donate.html" class="btn">Sponsor Acres</a>
+<section class="section">
+  <div class="container grid-2">
+    <div class="ph mission-img">
+      <div class="ph-label">volunteers &amp; schoolchildren on forest pathway</div>
+    </div>
+    <div>
+      <span class="eyebrow">Our Mission</span>
+      <h2 style="color:var(--forest-950); font-size:2rem;">United Nature Foundation exists to remove the barriers between people and possibility.</h2>
+      <p>We connect isolated communities to clean energy, safe passage, and a protected natural world — so that <em>every child can reach their classroom</em>, and every generation can inherit healthy land. At United Nature Foundation, we believe that where you live should never determine what you can achieve. We work directly alongside communities to put practical, sustainable solutions in place. We install solar energy systems that bring reliable power to homes and schools for the first time. We provide e-bikes that give children and families a safe, clean way to travel through difficult terrain — whatever the weather. And we work to protect and restore the land itself, standing against deforestation and working with communities to be stewards of the forests, rivers, and ecosystems that surround them.</p>
+      <div class="pill-row">
+        <span class="pill">☀️ Solar energy</span>
+        <span class="pill">🚲 E-bike access</span>
+        <span class="pill">🛡️ Land protection</span>
+        <span class="pill">🏠 Education access</span>
+      </div>
+    </div>
   </div>
 </section>
 
-<section class="protect-banner ph">
-  <div class="ph-label" style="position:absolute; top:0; right:0;">jungle river with jaguar face overlay</div>
-  <div>
-    <h2>TOGETHER,<br>WE PROTECT<br>WHAT MATTERS <em>MOST</em></h2>
+<section class="section" style="background: var(--cream-200);">
+  <div class="container">
+    <div class="projects-intro">
+      <span class="eyebrow">What We Do</span>
+      <h2 style="color:var(--ink);">Three projects. One mission.</h2>
+      <p style="color:#5b5b50;">Every project tackles a different barrier standing between isolated communities and the life they deserve. Together, they form the foundation of lasting change.</p>
+    </div>
+    <div class="project-cards">
+      <article class="project-card">
+        <div class="ph"><div class="ph-label">children walking a forest pathway</div></div>
+        <div class="project-card-body">
+          <span class="tag-pill">Infrastructure</span>
+          <h3>Pathways Project</h3>
+          <p>When floods rise and trees fall, the routes children rely on to reach school disappear. The Pathways Project works to clear, rebuild, and protect safe routes through difficult terrain — so that no child misses school because of the weather.</p>
+          <a class="learn" href="pathways.html">Learn More</a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="ph"><div class="ph-label">children riding e-bikes on forest path</div></div>
+        <div class="project-card-body">
+          <span class="tag-pill">Transport</span>
+          <h3>Pedal Project</h3>
+          <p>E-bikes give children and families a clean, reliable way to travel through remote landscapes — whatever the conditions. The Pedal Project puts sustainable transport directly into the hands of communities who need it most.</p>
+          <a class="learn" href="pedal.html">Learn More</a>
+        </div>
+      </article>
+      <article class="project-card">
+        <div class="ph"><div class="ph-label">village home powered by solar</div></div>
+        <div class="project-card-body">
+          <span class="tag-pill">Energy</span>
+          <h3>Power Project</h3>
+          <p>Reliable electricity changes everything — from studying after dark to powering medical equipment. The Power Project installs solar energy systems in off-grid communities, bringing light, warmth, and independence to the people who need it.</p>
+          <a class="learn" href="power.html">Learn More</a>
+        </div>
+      </article>
+    </div>
   </div>
-  <div class="stat"><div class="icon">🌱</div><div class="num">50,000+</div><div class="lbl">ACRES PROTECTED</div></div>
-  <div class="stat"><div class="icon">🐾</div><div class="num">1,500+</div><div class="lbl">SPECIES SAFEGUARDED</div></div>
-  <div class="stat"><div class="icon">☁️</div><div class="num">6M+</div><div class="lbl">TONS CO2 STORED</div></div>
 </section>
 
-<section class="wildlife-strip">
-  <div class="ph"><div class="ph-label">sloth hanging from branch</div></div>
-  <div class="ph"><div class="ph-label">capuchin monkey on log</div></div>
-  <div class="ph"><div class="ph-label">blue morpho butterfly on leaf</div></div>
-  <div class="ph"><div class="ph-label">river dolphin surfacing</div></div>
-  <div class="fact">The Amazon Rainforest is home to more than 3 million species of plants and animals, including around 10% of all known wildlife species on Earth.</div>
+<div class="quote-banner">
+  Every Contribution, Every Volunteer Hour, Every Shared Post<br>
+  Brings Us Closer To A World Where No Community Is Left Behind.
+</div>
+
+<section class="section calc-section">
+  <div class="container grid-2">
+    <div>
+      <span class="eyebrow">Live Rainfall Impact</span>
+      <h2 style="color:var(--ink); font-size:2.2rem;">When the rains come,<br><em style="color:var(--sage-500);">every path becomes a barrier.</em></h2>
+      <p>When the rains come to the Amazon, the landscape transforms overnight. Rivers swell, paths flood, and the journey to school becomes a gauntlet of deep mud, fallen trees, and fast-moving water.</p>
+      <p>Building safe pathways and bridges for the children of Presidente Figueiredo is one of UNF's most vital humanitarian projects — but we can't do it alone. Your support puts the next safe step under a child's feet.</p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:20px;">
+        <a href="pathways.html" class="btn btn-primary">Support the Pathways Project</a>
+        <a href="unf-projects.html" class="btn btn-outline">Volunteer</a>
+      </div>
+    </div>
+
+    <div class="calc-card">
+      <div class="calc-head">
+        <div class="calc-icon">🌧️</div>
+        <div>
+          <h3>Rainfall impact calculator</h3>
+          <span>Presidente Figueiredo, Amazon — live estimate</span>
+        </div>
+      </div>
+
+      <div class="slider-label"><span>MONTHLY RAINFALL (MM)</span><span id="rainfallVal">280 mm</span></div>
+      <input type="range" id="rainfall" min="80" max="450" value="280">
+
+      <div class="slider-label"><span>RAIN DURATION (DAYS/MONTH)</span><span id="durationVal">18 days</span></div>
+      <input type="range" id="duration" min="3" max="28" value="18">
+
+      <div class="slider-label"><span>SEASON</span></div>
+      <select class="season" id="season">
+        <option>Transition (Oct–Nov / Apr–May)</option>
+        <option>Wet season (Dec–Mar)</option>
+        <option>Dry season (Jun–Sep)</option>
+      </select>
+
+      <div class="stat-grid">
+        <div class="stat-box"><div class="num" id="statPathways">11</div><div class="lbl">pathways at risk of flooding</div></div>
+        <div class="stat-box"><div class="num" id="statChildren">264</div><div class="lbl">children affected</div></div>
+        <div class="stat-box"><div class="num" id="statDays">6</div><div class="lbl">school days lost per month</div></div>
+        <div class="stat-box dark"><div class="num" id="statCost">£2,220</div><div class="lbl">estimated repair cost</div></div>
+      </div>
+
+      <div class="risk-label"><span>Pathway flood risk</span><span id="riskPct">47%</span></div>
+      <div class="risk-bar"><span id="riskBar" style="width:47%;"></span></div>
+      <p class="risk-note" id="riskNote">Moderate flood risk. Some pathways will require clearing and reinforcement.</p>
+    </div>
+  </div>
+</section>
+
+<section class="save-amazon ph">
+  <div class="ph-label" style="position:absolute; top:0; left:0;">figure overlooking Amazon river valley, jaguar visible</div>
+  <div class="container">
+    <div class="kicker">TOGETHER, WE CAN</div>
+    <h2>SAVE THE AMAZON</h2>
+    <p style="letter-spacing:0.06em; font-size:0.85rem; margin:20px 0;">EVERY DONATION, EVERY LAND SPONSORSHIP,<br>EVERY SHARE, EVERY VOICE<br>MAKES A DIFFERENCE</p>
+    <p>UNF land purchases does more than support conservation — it directly protects real, living rainforest in Presidente Figueiredo, one of the most biodiverse regions on Earth.</p>
+    <p>This is a place where jaguars roam, river dolphins glide through winding waterways, and thousands of rare and endangered species thrive in a fragile ecosystem. When you join UNF, you secure a portion of land, permanently safeguarded and transformed into a protected nature reserve in your name.</p>
+    <a href="donate.html" class="btn btn-outline-light">Land Sponsorship</a>
+  </div>
+</section>
+
+<section class="section canopy-teaser">
+  <div class="container grid-2">
+    <div>
+      <h2>Canopy Crew</h2>
+      <p style="color:var(--teal-900);">Love the outdoors?<br>Join the Canopy Crew and help protect the natural world through monthly giving — plus receive exclusive gifts, activities, and your very own Canopy Crew certificate.</p>
+      <a href="canopy-crew.html" class="btn btn-primary">Sign Up</a>
+    </div>
+    <div class="ph" style="aspect-ratio:16/10; border-radius: var(--radius-md);">
+      <div class="ph-label">ranger reading to children under jungle canopy</div>
+    </div>
+  </div>
 </section>
 
 <footer class="site-footer">
@@ -594,6 +738,39 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+</script>
+<script>
+  // Rainfall impact calculator
+  const rainfall = document.getElementById('rainfall');
+  const duration = document.getElementById('duration');
+  function updateCalc() {
+    const r = parseInt(rainfall.value, 10);
+    const d = parseInt(duration.value, 10);
+    document.getElementById('rainfallVal').textContent = r + ' mm';
+    document.getElementById('durationVal').textContent = d + ' days';
+
+    // Simple illustrative model scaling from the slider inputs
+    const riskPct = Math.min(95, Math.round((r / 450) * 60 + (d / 28) * 40));
+    const pathways = Math.max(2, Math.round((riskPct / 100) * 24));
+    const children = pathways * 24;
+    const daysLost = Math.max(1, Math.round(d / 3));
+    const cost = pathways * 200 + Math.round(riskPct * 5);
+
+    document.getElementById('statPathways').textContent = pathways;
+    document.getElementById('statChildren').textContent = children;
+    document.getElementById('statDays').textContent = daysLost;
+    document.getElementById('statCost').textContent = '£' + cost.toLocaleString();
+    document.getElementById('riskPct').textContent = riskPct + '%';
+    document.getElementById('riskBar').style.width = riskPct + '%';
+
+    const note = document.getElementById('riskNote');
+    if (riskPct < 30) note.textContent = 'Low flood risk. Pathways are largely passable.';
+    else if (riskPct < 60) note.textContent = 'Moderate flood risk. Some pathways will require clearing and reinforcement.';
+    else note.textContent = 'High flood risk. Multiple pathways may become impassable without urgent repair.';
+  }
+  rainfall.addEventListener('input', updateCalc);
+  duration.addEventListener('input', updateCalc);
+  updateCalc();
 </script>
 </body>
 </html>

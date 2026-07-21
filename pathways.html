@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pathways Project — United Nature Foundation</title>
+<title>Our Story — United Nature Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -362,14 +362,56 @@ p { margin: 0 0 1em; }
   gap: 8px;
 }
 
+
+    .logo-img { height: 52px; width: auto; display: block; }
+    @media (max-width: 600px) { .logo-img { height: 42px; } }
 </style>
 <style>
-  .sub-hero { min-height: 420px; color: var(--white); display: flex; align-items: flex-end; padding-bottom: 50px; }
-  .sub-hero h1 { font-size: clamp(2rem, 4.4vw, 3rem); color: var(--white); }
-  .placeholder-note {
-    background: var(--sage-100); color: var(--forest-700); padding: 16px 22px; border-radius: 10px;
-    font-size: 0.9rem; margin-bottom: 40px;
+  .story-hero {
+    min-height: 560px;
+    color: var(--white);
+    display: flex;
+    align-items: center;
   }
+  .story-hero .container { display:grid; grid-template-columns: 1fr 1fr; }
+  .story-hero-text .eyebrow { color: rgba(255,255,255,0.85); }
+  .story-hero h1 { font-style: italic; font-size: clamp(2.4rem, 5vw, 3.6rem); color: var(--white); }
+  .story-hero ul { list-style: none; padding: 0; margin: 24px 0 0; }
+  .story-hero li { padding: 6px 0; font-size: 1.05rem; }
+  @media (max-width: 900px) { .story-hero .container { grid-template-columns: 1fr; } }
+
+  .intro-block h2 { color: var(--teal-900); font-size: 1.9rem; max-width: 640px; }
+  .intro-block p { color: var(--teal-900); }
+  .story-photo { border-radius: var(--radius-md); aspect-ratio: 16/10; }
+
+  .why-started h3 { color: var(--teal-900); font-size: 1.6rem; }
+
+  .hq-section { text-align: center; background: var(--cream-200); }
+  .hq-section h2 { color: var(--teal-900); }
+  .hq-section > .container > p { max-width: 700px; margin: 0 auto 50px; color: #5b5b50; }
+  .hq-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 24px;
+  }
+  .hq-item .icon {
+    width: 64px; height: 64px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--sage-100);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+  }
+  .hq-item h4 { font-size: 1.05rem; color: var(--teal-900); }
+  .hq-item p { font-size: 0.9rem; color: #5b5b50; }
+  @media (max-width: 900px) { .hq-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .protector-section {
+    color: var(--white);
+    padding: 90px 0;
+  }
+  .protector-section h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); max-width: 520px; color: var(--white); }
+  .protector-section p { max-width: 460px; opacity: 0.92; }
 </style>
 </head>
 <body>
@@ -377,17 +419,15 @@ p { margin: 0 0 1em; }
 <header class="site-header">
   <div class="container">
     <a href="index.html" class="brand">
-      <span class="unf">UNF</span>
-      <span class="full">UNITED NATURE</span>
-      <span class="tag">FOUNDATION</span>
+      <img src="media/unf-logo.png" alt="United Nature Foundation" class="logo-img">
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="main-nav">
-      <a href="our-story.html">Our Story</a>
+      <a href="our-story.html" aria-current="page">Our Story</a>
       <a href="canopy-crew.html">Canopy Crew</a>
-      <a href="unf-projects.html" aria-current="page">UNF Projects</a>
+      <a href="unf-projects.html">UNF Projects</a>
       <a href="donate.html">Donate</a>
     </nav>
     <div class="header-actions">
@@ -396,19 +436,64 @@ p { margin: 0 0 1em; }
   </div>
 </header>
 
-<section class="sub-hero ph">
-  <div class="ph-label" style="position:absolute; top:0; left:0;">children and volunteers on a forest boardwalk</div>
+<section class="story-hero ph">
+  <div class="ph-label" style="position:absolute; top:0; right:0;">aerial view of river through rainforest canopy</div>
   <div class="container">
-    <span class="eyebrow" style="color:#cfe3d0;">Infrastructure</span>
-    <h1>Pathways Project</h1>
+    <div class="story-hero-text">
+      <span class="eyebrow">Our Story</span>
+      <h1>About <em>UNF</em></h1>
+      <ul>
+        <li>Protect Nature</li>
+        <li>Empower Communities</li>
+        <li>Drive Lasting Impact</li>
+        <li>Inspire Stewardship</li>
+      </ul>
+    </div>
   </div>
 </section>
 
-<section class="section">
+<section class="section intro-block">
+  <div class="container grid-2">
+    <div>
+      <h2>Connecting Communities. Creating Opportunity. Protecting the Amazon.</h2>
+      <p>In remote communities throughout Presidente Figueiredo, Brazil, families face challenges that many of us never experience. Seasonal flooding can turn pathways into rivers, isolating communities from schools, healthcare, food supplies, and essential services.</p>
+      <p>United Nature Foundation exists to help create safe, sustainable connections between people, opportunity, and nature — building a future where communities can thrive while protecting one of the world's most important ecosystems.</p>
+    </div>
+    <div class="ph story-photo"><div class="ph-label">children under a shelter in the village</div></div>
+  </div>
+</section>
+
+<section class="section why-started" style="padding-top:0;">
+  <div class="container grid-2">
+    <div class="ph story-photo"><div class="ph-label">family portrait in the rainforest</div></div>
+    <div>
+      <h3>Why we started</h3>
+      <p>For many families living within the Amazon region, access is not guaranteed. Heavy rainfall and changing weather conditions can make routes impassable, preventing children from attending school and cutting communities off from vital resources. What should be a simple journey becomes a barrier to education, opportunity, and wellbeing.</p>
+      <p>We believe no child should miss an education because they cannot safely reach school, and no family should be isolated from essential services.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section hq-section">
   <div class="container">
-    <div class="placeholder-note">This page is a placeholder — the Pathways Project sub-page hasn't been fully designed in Wix yet. Send over screenshots any time and I'll rebuild this to match.</div>
-    <p style="max-width:700px; font-size:1.05rem;">Clearing, rebuilding, and protecting safe routes through difficult terrain — so that no child misses school because of the weather. The Pathways Project builds bridges, boardwalks, and reinforced trails through the flood-prone routes children rely on every day.</p>
-    <a href="unf-projects.html" class="btn btn-outline" style="margin-top:20px;">← Back to UNF Projects</a>
+    <h2>The Heart of Our Headquarters</h2>
+    <p>Alphonso was the heart of this area of the rainforest. People were drawn to him, protected by him, and inspired by him. That is exactly what our headquarters will become.</p>
+    <div class="hq-grid">
+      <div class="hq-item"><div class="icon">❤️</div><h4>A Heart</h4><p>A place full of compassion, connection and community</p></div>
+      <div class="hq-item"><div class="icon">🛡️</div><h4>A Protector</h4><p>A guardian of the land, wildlife, and future generations</p></div>
+      <div class="hq-item"><div class="icon">👨‍👩‍👧</div><h4>A Legacy</h4><p>A lasting tribute to Alphonso and his lifelong dedication</p></div>
+      <div class="hq-item"><div class="icon">🏡</div><h4>A Home</h4><p>A home for our team, supporters, and partners working together</p></div>
+      <div class="hq-item"><div class="icon">🌍</div><h4>A Future</h4><p>A place where hope grows and the rainforest is protected</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="protector-section ph">
+  <div class="ph-label" style="position:absolute; top:0; right:0;">jaguar face close-up over jungle river illustration</div>
+  <div class="container">
+    <h2>UNF is the new heart and protector of this land</h2>
+    <p>We carry communities spirits forward as we continue our mission to protect the Amazon and everything that calls it home.</p>
+    <a href="donate.html" class="btn btn-primary" style="margin-top:10px;">Join our mission</a>
   </div>
 </section>
 

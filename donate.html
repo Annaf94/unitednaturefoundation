@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Donate — United Nature Foundation</title>
+<title>Canopy Crew — United Nature Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -362,69 +362,94 @@ p { margin: 0 0 1em; }
   gap: 8px;
 }
 
+
+    .logo-img { height: 52px; width: auto; display: block; }
+    @media (max-width: 600px) { .logo-img { height: 42px; } }
 </style>
 <style>
-  .donate-hero {
-    margin: 26px auto 0;
-    max-width: var(--max-width);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    min-height: 460px;
+  .cc-hero {
+    min-height: 540px;
     color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 40px;
+    position: relative;
   }
-  .donate-hero h1 { font-size: clamp(1.8rem, 3.8vw, 2.6rem); color: var(--white); max-width: 760px; }
-  .donate-hero p { max-width: 720px; margin: 0 auto; opacity: 0.92; }
+  .cc-hero h1 { font-size: clamp(2.4rem, 6vw, 4rem); color: var(--white); margin-bottom: 6px; }
+  .cc-hero .sub { letter-spacing: 0.1em; font-size: 1rem; }
 
-  .impact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 60px; }
-  .impact-row:nth-child(even) .impact-text { order: 2; }
-  .impact-row h3 { color: var(--teal-900); font-size: 1.15rem; letter-spacing: 0.03em; text-transform: uppercase; }
-  .impact-row p { color: #4a4a3f; }
-  .impact-photo { border-radius: var(--radius-md); aspect-ratio: 16/10; }
-  @media (max-width: 800px) {
-    .impact-row { grid-template-columns: 1fr; }
-    .impact-row:nth-child(even) .impact-text { order: 0; }
+  /* Animated creatures peeking around the hero */
+  .creature {
+    position: absolute;
+    font-size: 3rem;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.35));
+  }
+  .creature.jaguar { bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 4rem; animation: peek 4s ease-in-out infinite; }
+  .creature.macaw { top: 18%; left: 10%; animation: sway 5s ease-in-out infinite; }
+  .creature.sloth { top: 20%; right: 10%; animation: dangle 6s ease-in-out infinite; }
+
+  @keyframes peek {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+  }
+  @keyframes sway {
+    0%, 100% { transform: rotate(-4deg) translateY(0); }
+    50% { transform: rotate(4deg) translateY(-6px); }
+  }
+  @keyframes dangle {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(8deg); }
   }
 
-  .give-section { display: grid; grid-template-columns: 1.1fr 0.9fr; background: var(--cream-200); }
-  .give-left { padding: 70px 60px; }
-  .give-left h2 { color: var(--teal-900); font-size: 2.2rem; }
-  .toggle-row { display: flex; gap: 0; max-width: 420px; margin: 24px 0 28px; border-radius: var(--radius-pill); overflow: hidden; border: 1px solid var(--forest-950); }
-  .toggle-row button {
-    flex: 1; padding: 14px; border: none; background: transparent; font-family: var(--font-body); cursor: pointer; font-size: 0.95rem;
-  }
-  .toggle-row button.active { background: var(--forest-950); color: var(--white); }
-  .amount-label { font-size: 0.85rem; letter-spacing: 0.06em; color: var(--teal-900); margin-bottom: 12px; }
-  .amount-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; max-width: 460px; margin-bottom: 20px; }
-  .amount-btn {
-    padding: 16px; border-radius: var(--radius-pill); border: 1px solid #cfcfc2; background: var(--white);
-    cursor: pointer; font-family: var(--font-body); font-size: 1rem;
-  }
-  .amount-btn.active { background: var(--forest-950); color: var(--white); border-color: var(--forest-950); }
-  #customAmount { display: none; margin-bottom: 20px; max-width: 460px; }
-  #customAmount input { width: 100%; padding: 14px 18px; border-radius: var(--radius-pill); border: 1px solid #cfcfc2; font-family: var(--font-body); }
-  .donate-submit { max-width: 460px; width: 100%; justify-content: center; }
-  .donate-note { font-size: 0.85rem; color: #7a7a6c; margin-top: 12px; max-width: 460px; }
-
-  .give-right { padding: 70px 40px; position: relative; display: flex; align-items: center; justify-content: center; }
-  .phone-mock {
-    width: 240px;
-    background: var(--cream-100);
-    border-radius: 34px;
-    border: 8px solid var(--ink);
-    padding: 20px 16px;
+  /* Tabs */
+  .tabs { display: flex; border-bottom: 1px solid #e2e2d6; }
+  .tab-btn {
+    flex: 1;
+    padding: 22px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    background: var(--stone-100);
+    color: var(--ink);
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1rem;
   }
-  .phone-mock .brand-mini { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--forest-950); margin-bottom: 30px; }
-  .phone-mock h3 { font-size: 1.3rem; color: var(--ink); }
-  .phone-mock p { font-size: 0.78rem; color: #6b6b60; }
-  .phone-amounts { display: flex; gap: 8px; justify-content: center; margin-top: 16px; }
-  .phone-amounts span { background: var(--stone-100); padding: 6px 10px; border-radius: var(--radius-pill); font-size: 0.75rem; }
+  .tab-btn.active { background: var(--forest-950); color: var(--white); }
+  .tab-panel { display: none; padding: 56px 0; }
+  .tab-panel.active { display: block; }
+  .tab-panel .grid-2 { align-items: flex-start; }
+  .tab-photo { border-radius: 50% / 40%; overflow: hidden; aspect-ratio: 4/5; max-width: 320px; }
+  .tab-panel h3 { color: var(--teal-900); font-size: 1.5rem; }
+  .tab-panel ul { padding-left: 0; list-style: none; }
+  .tab-panel li { padding: 8px 0; font-size: 1rem; }
+
+  .creative-section { background: var(--forest-950); color: var(--white); text-align: center; }
+  .creative-section h2 { color: var(--white); font-size: 2.4rem; text-transform: uppercase; margin-bottom: 50px; }
+  .creative-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+  .creative-card {
+    background: var(--cream-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    color: var(--ink);
+  }
+  .creative-card .ph { aspect-ratio: 4/3; }
+  .creative-card-body { padding: 26px; }
+  .creative-card h3 { text-decoration: underline; font-size: 1.3rem; }
+  .creative-tag {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    margin-top: 10px;
+  }
+  .tag-orange { background: #f6c89f; }
+  .tag-blue { background: #bcd7ea; }
+  .tag-purple { background: #e3c6ea; }
+  @media (max-width: 900px) { .creative-cards { grid-template-columns: 1fr; } }
+
+  .warrior-section { color: var(--white); padding: 90px 0; text-align: center; }
+  .warrior-section h2 { font-size: clamp(1.8rem, 3.6vw, 2.6rem); color: var(--white); max-width: 640px; margin: 0 auto 24px; }
 </style>
 </head>
 <body>
@@ -432,18 +457,16 @@ p { margin: 0 0 1em; }
 <header class="site-header">
   <div class="container">
     <a href="index.html" class="brand">
-      <span class="unf">UNF</span>
-      <span class="full">UNITED NATURE</span>
-      <span class="tag">FOUNDATION</span>
+      <img src="media/unf-logo.png" alt="United Nature Foundation" class="logo-img">
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <nav class="main-nav">
       <a href="our-story.html">Our Story</a>
-      <a href="canopy-crew.html">Canopy Crew</a>
+      <a href="canopy-crew.html" aria-current="page">Canopy Crew</a>
       <a href="unf-projects.html">UNF Projects</a>
-      <a href="donate.html" aria-current="page">Donate</a>
+      <a href="donate.html">Donate</a>
     </nav>
     <div class="header-actions">
       <a href="join-now.html" class="btn btn-primary">Join Now</a>
@@ -451,77 +474,109 @@ p { margin: 0 0 1em; }
   </div>
 </header>
 
-<div class="donate-hero ph">
-  <div class="ph-label" style="position:absolute; top:14px; left:14px;">misty aerial rainforest canopy</div>
+<section class="cc-hero ph">
+  <div class="ph-label" style="position:absolute; top:0; left:0;">sunlit jungle path</div>
+  <span class="creature macaw" aria-hidden="true">🦜</span>
+  <span class="creature sloth" aria-hidden="true">🦥</span>
+  <span class="creature jaguar" aria-hidden="true">🐆</span>
   <div>
-    <h1>How Your Donations Help Protect the Amazon</h1>
-    <p>Every donation to the United Nature Foundation directly supports the protection, restoration, and long-term survival of the Amazon rainforest ecosystem. Your support helps us safeguard one of the most biodiverse places on Earth — protecting wildlife, supporting local guardians, and restoring damaged rainforest for future generations.</p>
+    <h1>WELCOME<br>CANOPY CREW</h1>
+    <div class="sub">UNF JUNIOR MEMBERSHIP</div>
   </div>
-</div>
+</section>
 
-<section class="section">
+<section>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="membership">Childrens Membership</button>
+    <button class="tab-btn" data-tab="get">What you get</button>
+    <button class="tab-btn" data-tab="impact">Your Impact</button>
+  </div>
+
   <div class="container">
-    <div class="impact-row">
-      <div class="impact-text">
-        <h3>Plant and Restore Native Rainforest Trees</h3>
-        <p>Donations help us reforest degraded areas of the Amazon by planting native tree species that restore habitats, improve biodiversity, and strengthen the rainforest's natural ability to absorb carbon.</p>
+    <div class="tab-panel active" id="tab-membership">
+      <div class="grid-2">
+        <div class="ph tab-photo"><div class="ph-label">child with jaguar cub illustration</div></div>
+        <div>
+          <h3>Welcome to Canopy Crew Kids — the exciting nature club for young rainforest explorers who love animals, adventure, and protecting our planet!</h3>
+          <p>Canopy Crew is an exciting children's membership designed for young nature lovers aged 4–15 who want to help protect the Amazon Rainforest and its incredible wildlife.</p>
+          <p>For just £8.99 a month, members become part of a fun and inspiring community dedicated to learning about nature, conservation, and endangered animals.</p>
+          <p>Children will receive monthly rainforest updates, fun educational content, and exciting activities that help them connect with the natural world. Every quarter, members will also receive an exclusive Canopy Crew pack filled with special goodies, collectables, and surprises to continue their rainforest adventure at home.</p>
+          <p>From wildlife fact files and creative activities to certificates and exclusive member items, Canopy Crew helps children learn, explore, and make a real difference for the planet — all while having fun along the way.</p>
+        </div>
       </div>
-      <div class="ph impact-photo"><div class="ph-label">team planting saplings</div></div>
     </div>
-    <div class="impact-row">
-      <div class="impact-text">
-        <h3>Support Frontline Forest Patrols</h3>
-        <p>Your contribution helps fund local teams who monitor and patrol protected rainforest areas to prevent illegal logging, poaching, mining, and land destruction. These patrols are essential for protecting vulnerable wildlife and preserving untouched forest.</p>
+
+    <div class="tab-panel" id="tab-get">
+      <div class="grid-2">
+        <div class="ph tab-photo"><div class="ph-label">child with sloth illustration</div></div>
+        <div>
+          <h3>Every month, you'll receive exciting goodies, fun activities, and exclusive collectables while helping protect the Amazon Rainforest</h3>
+          <ul>
+            <li>👕 An exclusive Canopy Crew T-Shirt</li>
+            <li>🎁 A special welcome pack full of rainforest goodies</li>
+            <li>📗 A collectable Amazon fact file to learn amazing wildlife facts</li>
+            <li>🏅 Your very own personalised Canopy Crew certificate</li>
+            <li>🌿 Fun nature activities and rainforest challenges</li>
+            <li>🎨 Access to creative colouring pages, games, and crafts</li>
+            <li>🦁 Updates about the animals and rainforest you are helping protect</li>
+          </ul>
+        </div>
       </div>
-      <div class="ph impact-photo"><div class="ph-label">patrol vehicle on forest track</div></div>
     </div>
-    <div class="impact-row">
-      <div class="impact-text">
-        <h3>Protect Endangered Wildlife Habitats</h3>
-        <p>The Amazon is home to jaguars, macaws, river dolphins, monkeys, sloths, and thousands of rare species. Donations help preserve the habitats these animals rely on to survive. Healthy rainforests protect vital waterways that sustain wildlife, local communities, and the wider global climate system.</p>
+
+    <div class="tab-panel" id="tab-impact">
+      <div class="grid-2">
+        <div class="ph tab-photo"><div class="ph-label">child with macaw illustration</div></div>
+        <div>
+          <h3>The difference you're making by being a Canopy Crew Member is huge! You are a real Amazon Hero</h3>
+          <ul>
+            <li>🐆 Your membership helps keep animals like jaguars, macaws, and sloths safe</li>
+            <li>🌱 You support planting and protecting trees that help our planet breathe</li>
+            <li>💧 You help protect rivers, plants, and homes deep in the rainforest</li>
+            <li>❤️ Your support helps stop deforestation and protect nature for the future</li>
+            <li>👣 You help create a safer future for endangered animals and rainforest communities</li>
+            <li>🌿 Your kindness helps keep the Amazon wild, green, and full of life</li>
+          </ul>
+        </div>
       </div>
-      <div class="ph impact-photo"><div class="ph-label">jaguar resting in undergrowth</div></div>
-    </div>
-    <div class="impact-row">
-      <div class="impact-text">
-        <h3>Support Local Communities</h3>
-        <p>We work alongside local people who play a vital role in protecting the rainforest. Donations help create sustainable opportunities that encourage conservation over deforestation. Contributions also help fund educational resources and conservation awareness projects that inspire children and families to value and protect nature.</p>
-      </div>
-      <div class="ph impact-photo"><div class="ph-label">aerial view of village road through forest</div></div>
     </div>
   </div>
 </section>
 
-<section class="give-section" id="give">
-  <div class="give-left">
-    <h2>Help Us Protect</h2>
-    <div class="toggle-row">
-      <button type="button" class="freq-btn active" data-freq="one">One time</button>
-      <button type="button" class="freq-btn" data-freq="monthly">Monthly</button>
+<section class="section creative-section">
+  <div class="container">
+    <h2>Get Creative</h2>
+    <div class="creative-cards">
+      <div class="creative-card">
+        <div class="ph"><div class="ph-label">child holding colouring pages</div></div>
+        <div class="creative-card-body">
+          <h3>UNF Little Artists</h3>
+          <span class="creative-tag tag-orange">COLOURING PAGES</span>
+        </div>
+      </div>
+      <div class="creative-card">
+        <div class="ph"><div class="ph-label">child making art project</div></div>
+        <div class="creative-card-body">
+          <h3>UNF Creative Corner</h3>
+          <span class="creative-tag tag-blue">ART PROJECTS</span>
+        </div>
+      </div>
+      <div class="creative-card">
+        <div class="ph"><div class="ph-label">children playing a board game</div></div>
+        <div class="creative-card-body">
+          <h3>UNF Games</h3>
+          <span class="creative-tag tag-purple">INTERACTIVE GAMES</span>
+        </div>
+      </div>
     </div>
-    <div class="amount-label">CHOOSE AN AMOUNT TO GIVE</div>
-    <div class="amount-grid">
-      <button type="button" class="amount-btn" data-amount="5">£5</button>
-      <button type="button" class="amount-btn" data-amount="10">£10</button>
-      <button type="button" class="amount-btn" data-amount="20">£20</button>
-      <button type="button" class="amount-btn active" data-amount="50">£50</button>
-      <button type="button" class="amount-btn" data-amount="100">£100</button>
-      <button type="button" class="amount-btn" data-amount="other">Other</button>
-    </div>
-    <div id="customAmount">
-      <input type="number" min="1" placeholder="Enter amount (£)">
-    </div>
-    <button type="button" class="btn btn-primary donate-submit" id="donateBtn">Donate £50</button>
-    <p class="donate-note">Payments aren't connected yet — this button is a placeholder until a payment processor (e.g. Stripe) is set up.</p>
   </div>
-  <div class="give-right">
-    <div class="phone-mock">
-      <div class="brand-mini">UNF UNITED<br>NATURE FOUNDATION</div>
-      <h3>DONATE NOW</h3>
-      <p>Your support helps protect wildlife and natural habitats.</p>
-      <p style="margin-top:14px; font-size:0.7rem; letter-spacing:0.05em;">CHOOSE YOUR DONATION</p>
-      <div class="phone-amounts"><span>£5</span><span>£10</span><span>£20</span></div>
-    </div>
+</section>
+
+<section class="warrior-section ph">
+  <div class="ph-label" style="position:absolute; top:0; left:0;">ranger reading Amazon Story to children under canopy</div>
+  <div class="container">
+    <h2>Join Canopy Crew and become an Amazon Warrior</h2>
+    <a href="#" class="btn btn-outline-light">Sign Up →</a>
   </div>
 </section>
 
@@ -593,44 +648,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </script>
 <script>
-  const amountBtns = document.querySelectorAll('.amount-btn');
-  const customAmount = document.getElementById('customAmount');
-  const donateBtn = document.getElementById('donateBtn');
-  const freqBtns = document.querySelectorAll('.freq-btn');
-  let frequency = 'one time';
-
-  function updateDonateLabel() {
-    const active = document.querySelector('.amount-btn.active');
-    if (active && active.dataset.amount !== 'other') {
-      donateBtn.textContent = `Donate £${active.dataset.amount}${frequency === 'monthly' ? '/mo' : ''}`;
-    } else {
-      const val = customAmount.querySelector('input').value;
-      donateBtn.textContent = val ? `Donate £${val}${frequency === 'monthly' ? '/mo' : ''}` : 'Enter an amount';
-    }
-  }
-
-  amountBtns.forEach((btn) => {
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
-      amountBtns.forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
-      customAmount.style.display = btn.dataset.amount === 'other' ? 'block' : 'none';
-      updateDonateLabel();
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
     });
-  });
-
-  customAmount.querySelector('input').addEventListener('input', updateDonateLabel);
-
-  freqBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      freqBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      frequency = btn.dataset.freq === 'monthly' ? 'monthly' : 'one time';
-      updateDonateLabel();
-    });
-  });
-
-  donateBtn.addEventListener('click', () => {
-    alert('Payments are not connected yet. Once a payment processor is set up, this button will process real donations.');
   });
 </script>
 </body>
